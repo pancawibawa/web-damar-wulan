@@ -28,6 +28,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/produk', [UserController::class, 'produk'])->name('user.produk');
 });
 
+Route::get('/cart', [UserController::class, 'cart'])->name('user.cart');
+Route::get('/cekoutView', [UserController::class, 'cekoutView'])->name('user.cekoutView');
+Route::post('/cekout', [UserController::class, 'cekout'])->name('user.cekout');
+// Route::get('/get-provinces', [UserController::class, 'getProvinces'])->name('getProvinces');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

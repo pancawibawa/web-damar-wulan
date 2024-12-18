@@ -30,10 +30,10 @@
     <title>Search</title>
     @include('layouts.search')
 
-    <header id="header" class="site-header header-scrolled position-fixed text-black bg-light">
+    <header id="header" class="site-header header-scrolled position-fixed text-black bg-light" style="width: 100%; top: 0; z-index: 1000;">
         @include('layouts.header')
     </header>
-    <section>
+    <section style="margin-top: 80px;">
         @yield('konten')
     </section>
     
