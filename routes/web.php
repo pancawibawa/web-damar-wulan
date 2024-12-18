@@ -21,8 +21,11 @@ use App\Http\Controllers\LandingController;
 //     return view('welcome');
 // });
 
-Route::get('/',[LandingController::class,'landingpage'])->name('landingpage');
-Route::get('/produk',[UserController::class,'produk'])->name('user.produk');
+Route::get('/', [LandingController::class, 'landingpage'])->name('landingpage');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/produk', [UserController::class, 'produk'])->name('user.produk');
+});
 
 Auth::routes();
 
