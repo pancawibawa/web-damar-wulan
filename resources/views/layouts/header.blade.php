@@ -60,7 +60,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="cart.html">
+                                    <a href="{{route('user.cart')}}">
                                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                     </a>
                                 </li>

@@ -3,13 +3,13 @@
     <section id="mobile-products" class="product-store position-relative padding-large no-padding-top">
         <div class="container">
             <div class="row">
-                <div class="display-header d-flex justify-content-between pb-3">
+                {{-- <div class="display-header d-flex justify-content-between pb-3">
                     <h2 class="display-7 text-dark text-uppercase">Produk Kami</h2>
                     <div class="btn-right">
                         <a href="{{ route('user.produk') }}" class="btn btn-medium btn-normal text-uppercase">Lihat
                             Selengkapnya</a>
                     </div>
-                </div>
+                </div> --}}
                 <div class="my-4 d-flex justify-content-center">
                     <h1>Produk Kami</h1>
                 </div>
