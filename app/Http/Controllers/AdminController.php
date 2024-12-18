@@ -12,7 +12,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.dashboard.index'); // Rute ke file view dashboard
     }
 
     /**
