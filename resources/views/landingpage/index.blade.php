@@ -55,44 +55,44 @@
                 <div class="col-lg-3 col-md-6 pb-3">
                     <div class="icon-box d-flex">
                         <div class="icon-box-icon pe-3 pb-3">
-                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                            <i class="fa fa-truck" aria-hidden="true"></i>
                         </div>
                         <div class="icon-box-content">
-                            <h3 class="card-title text-uppercase text-dark">Free delivery</h3>
-                            <p>Consectetur adipi elit lorem ipsum dolor sit amet.</p>
+                            <h3 class="card-title text-uppercase text-dark">Pengiriman Cepat</h3>
+                            <p>Kami menyediakan pengiriman cepat dan aman ke seluruh wilayah Indonesia.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 pb-3">
                     <div class="icon-box d-flex">
                         <div class="icon-box-icon pe-3 pb-3">
-                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-headphones" aria-hidden="true"></i>
                         </div>
                         <div class="icon-box-content">
-                            <h3 class="card-title text-uppercase text-dark">Quality guarantee</h3>
-                            <p>Dolor sit amet orem ipsu mcons ectetur adipi elit.</p>
+                            <h3 class="card-title text-uppercase text-dark">Layanan Pelanggan</h3>
+                            <p>Tim layanan pelanggan kami siap membantu Anda dengan pertanyaan atau masalah apa pun.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 pb-3">
                     <div class="icon-box d-flex">
                         <div class="icon-box-icon pe-3 pb-3">
-                            <i class="fa fa-tag" aria-hidden="true"></i>
+                            <i class="fa fa-credit-card" aria-hidden="true"></i>
                         </div>
                         <div class="icon-box-content">
-                            <h3 class="card-title text-uppercase text-dark">Daily offers</h3>
-                            <p>Amet consectetur adipi elit loreme ipsum dolor sit.</p>
+                            <h3 class="card-title text-uppercase text-dark">Pembayaran Mudah</h3>
+                            <p>Kami menawarkan berbagai metode pembayaran yang mudah dan aman.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 pb-3">
                     <div class="icon-box d-flex">
                         <div class="icon-box-icon pe-3 pb-3">
-                            <i class="fa fa-shield-plus" aria-hidden="true"></i>
+                            <i class="fa fa-check-circle" aria-hidden="true"></i>
                         </div>
                         <div class="icon-box-content">
-                            <h3 class="card-title text-uppercase text-dark">100% secure payment</h3>
-                            <p>Rem Lopsum dolor sit amet, consectetur adipi elit.</p>
+                            <h3 class="card-title text-uppercase text-dark">Jaminan Kualitas</h3>
+                            <p>Setiap produk yang kami jual sudah terjamin kualitasnya dan melewati pengecekan ketat.</p>
                         </div>
                     </div>
                 </div>
@@ -104,115 +104,38 @@
             <div class="row">
                 <div class="display-header d-flex justify-content-between pb-3">
                     <h2 class="display-7 text-dark text-uppercase">Produk Kami</h2>
-                    {{-- <div class="btn-right">
-                        <a href="shop.html" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
-                    </div> --}}
+                    <div class="btn-right">
+                        <a href="{{ route('user.produk') }}" class="btn btn-medium btn-normal text-uppercase">Lihat
+                            Selengkapnya</a>
+                    </div>
                 </div>
                 <div class="swiper product-swiper">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="product-card position-relative">
-                                <div class="image-holder">
-                                    <img src="asset/images/product-item1.jpg" alt="product-item" class="img-fluid">
-                                </div>
-                                <div class="cart-concern position-absolute">
-                                    <div class="cart-button d-flex">
-                                        <a href="#" class="btn btn-medium btn-black">Add to Cart<i
-                                                class="fa fa-cart-plus" aria-hidden="true"></i></a>
+                        @for ($i = 1; $i <= 10; $i++)
+                            <div class="swiper-slide">
+                                <div class="product-card position-relative px-0">
+                                    <div class="container py-0 px-0">
+                                        <div class="card"
+                                            style="width: 100%; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                            <div class="image-holder" style="width: 100%; height: 18rem; overflow: hidden;">
+                                                <img src="asset/images/product-item1.jpg" class="card-img-top"
+                                                    alt="..." style="object-fit: cover; width: 100%; height: 100%;">
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">Songkok NasiUduk</h5>
+                                                <h4>RP 80000</h4>
+                                                <p class="card-text">songkok dengan pribadi yang luwes</p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <a href="#" class="btn btn-dark">Add Cart</a>
+                                                    <p style="font-size: 14px; color: #555;">Terjual: <span
+                                                            style="font-weight: bold; color: green;">150</span> pcs</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                                    <h3 class="card-title text-uppercase">
-                                        <a href="#">Iphone 10</a>
-                                    </h3>
-                                    <span class="item-price text-primary">$980</span>
-                                </div>
                             </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="product-card position-relative">
-                                <div class="image-holder">
-                                    <img src="asset/images/product-item2.jpg" alt="product-item" class="img-fluid">
-                                </div>
-                                <div class="cart-concern position-absolute">
-                                    <div class="cart-button d-flex">
-                                        <a href="#" class="btn btn-medium btn-black">Add to Cart<svg
-                                                class="cart-outline">
-                                                <use xlink:href="#cart-outline"></use>
-                                            </svg></a>
-                                    </div>
-                                </div>
-                                <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                                    <h3 class="card-title text-uppercase">
-                                        <a href="#">Iphone 11</a>
-                                    </h3>
-                                    <span class="item-price text-primary">$1100</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="product-card position-relative">
-                                <div class="image-holder">
-                                    <img src="asset/images/product-item3.jpg" alt="product-item" class="img-fluid">
-                                </div>
-                                <div class="cart-concern position-absolute">
-                                    <div class="cart-button d-flex">
-                                        <a href="#" class="btn btn-medium btn-black">Add to Cart<svg
-                                                class="cart-outline">
-                                                <use xlink:href="#cart-outline"></use>
-                                            </svg></a>
-                                    </div>
-                                </div>
-                                <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                                    <h3 class="card-title text-uppercase">
-                                        <a href="#">Iphone 8</a>
-                                    </h3>
-                                    <span class="item-price text-primary">$780</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="product-card position-relative">
-                                <div class="image-holder">
-                                    <img src="asset/images/product-item4.jpg" alt="product-item" class="img-fluid">
-                                </div>
-                                <div class="cart-concern position-absolute">
-                                    <div class="cart-button d-flex">
-                                        <a href="#" class="btn btn-medium btn-black">Add to Cart<svg
-                                                class="cart-outline">
-                                                <use xlink:href="#cart-outline"></use>
-                                            </svg></a>
-                                    </div>
-                                </div>
-                                <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                                    <h3 class="card-title text-uppercase">
-                                        <a href="#">Iphone 13</a>
-                                    </h3>
-                                    <span class="item-price text-primary">$1500</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="product-card position-relative">
-                                <div class="image-holder">
-                                    <img src="asset/images/product-item5.jpg" alt="product-item" class="img-fluid">
-                                </div>
-                                <div class="cart-concern position-absolute">
-                                    <div class="cart-button d-flex">
-                                        <a href="#" class="btn btn-medium btn-black">Add to Cart<svg
-                                                class="cart-outline">
-                                                <use xlink:href="#cart-outline"></use>
-                                            </svg></a>
-                                    </div>
-                                </div>
-                                <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                                    <h3 class="card-title text-uppercase">
-                                        <a href="#">Iphone 12</a>
-                                    </h3>
-                                    <span class="item-price text-primary">$1300</span>
-                                </div>
-                            </div>
-                        </div>
+                        @endfor
                     </div>
                 </div>
             </div>
@@ -230,111 +153,32 @@
                 </div>
                 <div class="swiper product-watch-swiper">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="product-card position-relative">
-                                <div class="image-holder">
-                                    <img src="asset/images/product-item6.jpg" alt="product-item" class="img-fluid">
-                                </div>
-                                <div class="cart-concern position-absolute">
-                                    <div class="cart-button d-flex">
-                                        <a href="#" class="btn btn-medium btn-black">Add to Cart<svg
-                                                class="cart-outline">
-                                                <use xlink:href="#cart-outline"></use>
-                                            </svg></a>
+                        @for ($i = 1; $i <= 10; $i++)
+                            <div class="swiper-slide">
+                                <div class="product-card position-relative px-0">
+                                    <div class="container py-0 px-0">
+                                        <div class="card"
+                                            style="width: 100%; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                            <div class="image-holder"
+                                                style="width: 100%; height: 18rem; overflow: hidden;">
+                                                <img src="asset/images/product-item1.jpg" class="card-img-top"
+                                                    alt="..." style="object-fit: cover; width: 100%; height: 100%;">
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">Songkok NasiUduk</h5>
+                                                <h4>RP 80000</h4>
+                                                <p class="card-text">songkok dengan pribadi yang luwes</p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <a href="#" class="btn btn-dark">Add Cart</a>
+                                                    <p style="font-size: 14px; color: #555;">Terjual: <span
+                                                            style="font-weight: bold; color: green;">150</span> pcs</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                                    <h3 class="card-title text-uppercase">
-                                        <a href="#">Pink watch</a>
-                                    </h3>
-                                    <span class="item-price text-primary">$870</span>
-                                </div>
                             </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="product-card position-relative">
-                                <div class="image-holder">
-                                    <img src="asset/images/product-item7.jpg" alt="product-item" class="img-fluid">
-                                </div>
-                                <div class="cart-concern position-absolute">
-                                    <div class="cart-button d-flex">
-                                        <a href="#" class="btn btn-medium btn-black">Add to Cart<svg
-                                                class="cart-outline">
-                                                <use xlink:href="#cart-outline"></use>
-                                            </svg></a>
-                                    </div>
-                                </div>
-                                <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                                    <h3 class="card-title text-uppercase">
-                                        <a href="#">Heavy watch</a>
-                                    </h3>
-                                    <span class="item-price text-primary">$680</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="product-card position-relative">
-                                <div class="image-holder">
-                                    <img src="asset/images/product-item8.jpg" alt="product-item" class="img-fluid">
-                                </div>
-                                <div class="cart-concern position-absolute">
-                                    <div class="cart-button d-flex">
-                                        <a href="#" class="btn btn-medium btn-black">Add to Cart<svg
-                                                class="cart-outline">
-                                                <use xlink:href="#cart-outline"></use>
-                                            </svg></a>
-                                    </div>
-                                </div>
-                                <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                                    <h3 class="card-title text-uppercase">
-                                        <a href="#">spotted watch</a>
-                                    </h3>
-                                    <span class="item-price text-primary">$750</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="product-card position-relative">
-                                <div class="image-holder">
-                                    <img src="asset/images/product-item9.jpg" alt="product-item" class="img-fluid">
-                                </div>
-                                <div class="cart-concern position-absolute">
-                                    <div class="cart-button d-flex">
-                                        <a href="#" class="btn btn-medium btn-black">Add to Cart<svg
-                                                class="cart-outline">
-                                                <use xlink:href="#cart-outline"></use>
-                                            </svg></a>
-                                    </div>
-                                </div>
-                                <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                                    <h3 class="card-title text-uppercase">
-                                        <a href="#">black watch</a>
-                                    </h3>
-                                    <span class="item-price text-primary">$650</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="product-card position-relative">
-                                <div class="image-holder">
-                                    <img src="asset/images/product-item10.jpg" alt="product-item" class="img-fluid">
-                                </div>
-                                <div class="cart-concern position-absolute">
-                                    <div class="cart-button d-flex">
-                                        <a href="#" class="btn btn-medium btn-black">Add to Cart<svg
-                                                class="cart-outline">
-                                                <use xlink:href="#cart-outline"></use>
-                                            </svg></a>
-                                    </div>
-                                </div>
-                                <div class="card-detail d-flex justify-content-between pt-3">
-                                    <h3 class="card-title text-uppercase">
-                                        <a href="#">black watch</a>
-                                    </h3>
-                                    <span class="item-price text-primary">$750</span>
-                                </div>
-                            </div>
-                        </div>
+                        @endfor
                     </div>
                 </div>
             </div>
@@ -438,10 +282,12 @@
                                 <div class="review-item col-md-10">
                                     <i class="icon icon-review"></i>
                                     <blockquote>
-                                        “Damar Wulan Group hadir untuk melengkapi ibadah Anda dengan songkok berkualitas tinggi. 
-                                        Setiap detail dirancang untuk kenyamanan dan kekhusyukan, menjadikan ibadah lebih sempurna.”
+                                        “Damar Wulan Group hadir untuk melengkapi ibadah Anda dengan songkok berkualitas
+                                        tinggi.
+                                        Setiap detail dirancang untuk kenyamanan dan kekhusyukan, menjadikan ibadah lebih
+                                        sempurna.”
                                     </blockquote>
-                                    
+
                                     <div class="author-detail">
                                         <div class="name text-dark text-uppercase pt-2">Owner Damar Wulan</div>
                                     </div>
