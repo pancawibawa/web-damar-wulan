@@ -5,7 +5,7 @@
                 <div class="col-lg-3 col-sm-6 pb-3">
                     <div class="footer-menu">
                         <div style="font-weight: bold; font-size: 1.5rem;">Damar Wulan Group.</div>
-                        {{-- <img src="asset/images/main-logo.png" alt="logo"> --}}
+                        {{-- <img src="{{asset('asset/images/main-logo.png" alt="logo"> --}}
                         <p>Menjadi penyedia alat salat terbaik yang mengutamakan kualitas, kenyamanan, dan keindahan,
                             serta mendukung umat Islam dalam menjalankan ibadah dengan sempurna.</p>
                         {{-- <div class="social-links">
@@ -114,8 +114,8 @@
                 <div class="Shipping d-flex">
                     <p>Kami Bisa Kirim Dengan:</p>
                     <div class="card-wrap ps-2">
-                        <img src="asset/images/dhl.png" alt="visa">
-                        <img src="asset/images/shippingcard.png" alt="mastercard">
+                        <img src="{{asset('asset/images/dhl.png')}}" alt="visa">
+                        <img src="{{asset('asset/images/shippingcard.png')}}" alt="mastercard">
                     </div>
                 </div>
             </div>
@@ -123,9 +123,9 @@
                 <div class="payment-method d-flex">
                     <p>Pembayaran Kami:</p>
                     <div class="card-wrap ps-2">
-                        <img src="asset/images/visa.jpg" alt="visa">
-                        <img src="asset/images/mastercard.jpg" alt="mastercard">
-                        <img src="asset/images/paypal.jpg" alt="paypal">
+                        <img src="{{asset('asset/images/visa.jpg')}}" alt="visa">
+                        <img src="{{asset('asset/images/mastercard.jpg')}}" alt="mastercard">
+                        <img src="{{asset('asset/images/paypal.jpg')}}" alt="paypal">
                     </div>
                 </div>
             </div>

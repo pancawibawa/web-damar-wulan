@@ -18,7 +18,8 @@ class LoginController extends Controller
         if (Auth::user()->role === 'admin') {
             return '/admin/dashboard'; // Redirect admin ke dashboard
         } elseif (Auth::user()->role === 'user') {
-            return '/produk'; // Redirect user ke halaman produk
+            session()->flash('success', 'Login berhasil! Selamat datang, ' . Auth::user()->name);
+            return '/home'; // Redirect user ke halaman produk
         }
 
         return '/'; // Redirect default jika tidak memiliki role

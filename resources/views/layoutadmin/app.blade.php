@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/"
-    data-template="vertical-menu-template-free">
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
+    data-assets-path="../assets/" data-template="vertical-menu-template-free">
 
 <head>
     <meta charset="utf-8" />
@@ -40,6 +40,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Helpers -->
     <script src="{{ asset('sneat/vendor/js/helpers.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -72,24 +74,7 @@
 
                 <div class="menu-inner-shadow"></div>
 
-                <ul class="menu-inner py-1">
-                    <!-- Dashboard -->
-                    <!-- Dashboard -->
-                    <li class="menu-item {{ Request::is('admin/dashboard') ? 'active' : '' }}">
-                        <a href="{{ route('dashboard.index') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                            <div data-i18n="Analytics">Dashboard</div>
-                        </a>
-                    </li>
-
-                    <!-- Produk Management -->
-                    <li class="menu-item">
-                        <a href="/" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                            <div data-i18n="Analytics">Produk Management</div>
-                        </a>
-                    </li>
-                </ul>
+                @include('layoutadmin.sidebar')
             </aside>
             <!-- / Menu -->
 
@@ -99,6 +84,25 @@
                 <header class="header" style="position: sticky; top: 0; z-index: 1000; background-color: white;">
                     @include('layoutadmin.header')
                 </header>
+
+                @if (session()->has('success'))
+                    <script>
+                        // Menampilkan SweetAlert2 setelah halaman dimuat
+                        document.addEventListener('DOMContentLoaded', function() {
+                            Swal.fire({
+                                position: 'top-end', // Posisi di pojok kanan atas
+                                icon: 'success', // Ikon sukses
+                                title: '{{ session('success') }}', // Pesan sukses
+                                showConfirmButton: false, // Tidak menampilkan tombol konfirmasi
+                                timer: 3000, // Waktu tampil 3 detik
+                                toast: true, // Menggunakan mode toast
+                                background: '#28a745', // Warna latar belakang hijau
+                                color: 'white', // Warna teks putih
+                                timerProgressBar: true, // Menampilkan progress bar
+                            });
+                        });
+                    </script>
+                @endif
 
 
                 <!-- / Navbar -->
