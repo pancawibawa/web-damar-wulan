@@ -74,6 +74,7 @@ class OrderController extends Controller
         // Perbarui status pesanan berdasarkan input dari tombol
         if ($request->status == 'berhasil' || $request->status == 'ditolak') {
             $order->status = $request->status;
+            $order->nomor_resi = $request->resi_number;
             $order->save();
 
             return redirect()->route('admin.order.show', $order->id)->with('success', 'Status pesanan telah diperbarui!');

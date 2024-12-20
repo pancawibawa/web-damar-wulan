@@ -22,6 +22,7 @@ class Order extends Model
         'email',
         'shipping_cost',
         'payment_proof',
+        'nomor_resi',
     ];
 
     // Relasi dengan model OrderItem
