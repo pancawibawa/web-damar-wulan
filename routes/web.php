@@ -48,8 +48,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     // Route untuk menampilkan halaman daftar orderan
     Route::get('/admin/order', [OrderController::class, 'adminIndex'])->name('admin.order.index');
-    Route::get('/admin/order/{order}', [OrderController::class, 'show'])->name('admin.order.show');
+    Route::get('/admin/order/{id}', [OrderController::class, 'show'])->name('admin.order.show');
     Route::put('/admin/order/{order}', [OrderController::class, 'update'])->name('admin.order.update');
+    Route::put('admin/order/{id}/status', [OrderController::class, 'updateStatus'])->name('admin.order.updateStatus');
     Route::delete('/admin/order/{order}', [OrderController::class, 'destroy'])->name('admin.order.destroy');
 
 });
@@ -76,7 +77,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::post('/order', [UserController::class, 'order'])->name('user.order');
 
     Route::post('/order/{order}/upload-payment-proof', [OrderController::class, 'uploadPaymentProof'])->name('order.uploadPaymentProof');
-    
+
 
 
     // Route untuk melihat dan menambah produk ke keranjang
@@ -85,6 +86,6 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('user.cart.delete');
     Route::post('/cart/{cartId}/update', [CartController::class, 'updateQuantity']);
 
-    
+
 });
 

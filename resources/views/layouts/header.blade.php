@@ -19,69 +19,69 @@
                 <ul id="navbar"
                     class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
                     @if (!Auth::check())
-                        {{-- Jika user belum login, tampilkan menu untuk halaman utama --}}
-                        <li class="nav-item">
-                            <a class="nav-link me-4 active" href="#billboard">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link me-4" href="#company-services">Pelayanan</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link me-4" href="#mobile-products">Produk</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link me-4" href="#smart-watches">Promo</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link me-4" href="/login">Login</a>
-                        </li>
+                    {{-- Jika user belum login, tampilkan menu untuk halaman utama --}}
+                    <li class="nav-item">
+                        <a class="nav-link me-4 active" href="#billboard">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-4" href="#company-services">Pelayanan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-4" href="#mobile-products">Produk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-4" href="#smart-watches">Promo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-4" href="/login">Login</a>
+                    </li>
                     @else
-                        {{-- Jika user sudah login, tampilkan menu dengan nama user dan opsi tambahan --}}
-                        <li class="nav-item">
-                            <a class="nav-link me-4 active" href="/">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link me-4" href="/#company-services">Pelayanan</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link me-4" href="{{ route('user.produk') }}">Produk</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link me-4" href="/#smart-watches">Promo</a>
-                        </li>
-                        {{-- Dropdown untuk user yang sudah login --}}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link me-4 dropdown-toggle link-dark" data-bs-toggle="dropdown" href="#"
-                                role="button" aria-expanded="false">
-                                {{ Auth::user()->name }}
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="{{ route('user.cart') }}" class="dropdown-item">
-                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('user.history') }}" class="dropdown-item">
-                                        <i class="fa fa-truck" aria-hidden="true"></i> Pesanan Saya
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('user.profile') }}" class="dropdown-item">
-                                        <i class="fa fa-user" aria-hidden="true"></i> Profil
-                                    </a>
-                                </li>
-                                <li>
-                                    {{-- Tombol logout --}}
-                                    <form action="{{ route('logout') }}" method="POST">
-                                        @csrf
-                                        <button class="dropdown-item" type="submit">
-                                            <i class="fa fa-sign-out-alt" aria-hidden="true"></i> Log Out
-                                        </button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
+                    {{-- Jika user sudah login, tampilkan menu dengan nama user dan opsi tambahan --}}
+                    <li class="nav-item">
+                        <a class="nav-link me-4 active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-4" href="/#company-services">Pelayanan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-4" href="{{ route('user.produk') }}">Produk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-4" href="/#smart-watches">Promo</a>
+                    </li>
+                    {{-- Dropdown untuk user yang sudah login --}}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link me-4 dropdown-toggle link-dark" data-bs-toggle="dropdown" href="#"
+                            role="button" aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ route('user.cart') }}" class="dropdown-item">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> Keranjang
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('user.history') }}" class="dropdown-item">
+                                    <i class="fa fa-truck" aria-hidden="true"></i> Pesanan Saya
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('user.profile') }}" class="dropdown-item">
+                                    <i class="fa fa-user" aria-hidden="true"></i> Profil
+                                </a>
+                            </li>
+                            <li>
+                                {{-- Tombol logout --}}
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button class="dropdown-item" type="submit">
+                                        <i class="fa fa-sign-out-alt" aria-hidden="true"></i> Log Out
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
                     @endif
 
                     {{-- <li class="nav-item">
