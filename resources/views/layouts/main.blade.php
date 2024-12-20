@@ -22,7 +22,7 @@
     <!-- Link ke Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-    <script src="asset/js/modernizr.js"></script>
+    <script src="{{asset('asset/js/modernizr.js')}}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -63,11 +63,11 @@
         @include('layouts.footer')
     </footer>
 
-    <script src="asset/js/jquery-1.11.0.min.js"></script>
+    <script src="{{asset('asset/js/jquery-1.11.0.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <script type="text/javascript" src="asset/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="asset/js/plugins.js"></script>
-    <script type="text/javascript" src="asset/js/script.js"></script>
+    <script type="text/javascript" src="{{asset('asset/js/bootstrap.bundle.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('asset/js/plugins.js')}}"></script>
+    <script type="text/javascript" src="{{asset('asset/js/script.js')}}"></script>
 </body>
 
 </html>

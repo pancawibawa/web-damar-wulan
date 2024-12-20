@@ -47,23 +47,45 @@
                                 {{ $order->city }}, {{ $order->province }} - {{ $order->postal_code }}
                             </td>
                             <td rowspan="{{ $order->orderItems->count() }}">
-                                <strong>Bayar</strong>
-                                <form action="{{ route('order.uploadPaymentProof', $order->id) }}" method="POST"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    <!-- Input file untuk mengunggah bukti transfer -->
-                                    <div class="form-group">
-                                        <label for="payment_proof">Unggah Bukti Transfer</label>
-                                        <input type="file" name="payment_proof" id="payment_proof" class="form-control"
-                                            required>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary mt-2">Bayar</button>
-                                </form>
+
+                                <button type="button" class="btn btn-primary"
+                                    id="pay-button-{{ $order->id }}">Bayar</button>
+
+                                <!-- Link untuk melihat bukti pembayaran jika sudah ada -->
                                 @if ($order->payment_proof)
-                                    <a href="{{ asset('storage/' . $order->payment_proof) }}" target="_blank">Lihat Bukti
-                                        Transfer</a>
+                                    <a href="{{ asset('storage/' . $order->payment_proof) }}" target="_blank"
+                                        class="btn btn-link mt-2">Lihat Bukti Transfer</a>
                                 @endif
                             </td>
+
+                            <script>
+                                document.getElementById('pay-button-{{ $order->id }}').addEventListener('click', function() {
+                                    Swal.fire({
+                                        title: 'Unggah Bukti Pembayaran',
+                                        html: `
+                                        <p class="text-start">Silahkan transfer ke nomor rekening berikut:</p>
+                                            <div class="text-start mb-3">
+                                                <strong>Bank: BCA</strong><br>
+                                                <strong>Nomor Rekening: 1234567890</strong><br>
+                                                <strong>Atas Nama: Damar Wulan Group</strong>
+                                            </div>
+                                            <div class="text-center mb-3">
+                                                <img src="{{ asset('asset/images/qris.jpg') }}" alt="QRIS" class="img-fluid" style="max-width: 200px;">
+                                            </div>
+                                            <form action="{{ route('order.uploadPaymentProof', $order->id) }}" method="POST" enctype="multipart/form-data" id="payment-form-{{ $order->id }}">
+                                                @csrf
+                                                
+                                                <div class="form-group text-start">
+                                                    <label for="payment_proof">Unggah Bukti Transfer</label>
+                                                    <input type="file" name="payment_proof" id="payment_proof" class="form-control mt-2" required>
+                                                </div>
+                                                <button type="submit" class="btn btn-success mt-3">Kirim</button>
+                                            </form>
+                                        `,
+                                        showConfirmButton: false,
+                                    });
+                                });
+                            </script>
 
                         </tr>
 
@@ -80,7 +102,7 @@
             </table>
         </div>
         <div class="text-center mt-4">
-            <a href="/products" class="btn btn-primary">Belanja Lagi</a>
+            <a href="/produk" class="btn btn-primary">Belanja Lagi</a>
         </div>
     </div>
 @endsection
