@@ -13,7 +13,6 @@ class Order extends Model
         'user_id',
         'order_id',
         'product_id',
-        'quantity',
         'total_price',
         'address',
         'city',
@@ -22,6 +21,7 @@ class Order extends Model
         'phone',
         'email',
         'shipping_cost',
+        'payment_proof',
     ];
 
     // Relasi dengan model OrderItem
@@ -33,7 +33,7 @@ class Order extends Model
     // Relasi dengan model Produk (jika Order mengarah ke Produk secara langsung)
     public function produk()
     {
-        return $this->belongsTo(Produk::class);
+        return $this->belongsTo(Produk::class, 'produk_id');
     }
 
     // Relasi dengan model User (user yang membuat order)

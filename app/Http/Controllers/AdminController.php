@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
+use App\Models\Produk;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -12,19 +13,11 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard.index'); // Rute ke file view dashboard
+        $totalProduk = Produk::count(); // Menghitung total produk
+        $totalOrder = Order::count(); // Menghitung total order
+        $totalBerhasil = Order::where('status', 'berhasil')->count(); // Menghitung order berhasil
+
+        return view('admin.dashboard.index', compact('totalProduk', 'totalOrder', 'totalBerhasil'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-
 }
+
