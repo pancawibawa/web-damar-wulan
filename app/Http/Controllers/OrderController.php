@@ -12,12 +12,12 @@ class OrderController extends Controller
 {
     // Menampilkan daftar orderan untuk admin
     public function adminIndex()
-{
-    // Memuat relasi user, orderItems, dan produk
-    $order = Order::with(['user', 'orderItems.produk'])->get();
+    {
+        // Memuat relasi user, orderItems, dan produk
+        $order = Order::with(['user', 'orderItems.produk'])->get();
 
-    return view('admin.order.index', compact('order'));
-}
+        return view('admin.order.index', compact('order'));
+    }
 
     // Menampilkan daftar orderan untuk pengguna
     public function index()
@@ -67,12 +67,49 @@ class OrderController extends Controller
         return view('admin.order.show', compact('order'));
     }
 
+    // public function updateStatus(Request $request, $id)
+    // {
+    //     $order = Order::findOrFail($id);
+
+    //     // Perbarui status pesanan berdasarkan input dari tombol
+    //     if ($request->status == 'berhasil' || $request->status == 'ditolak') {
+    //         $order->status = $request->status;
+    //         $order->nomor_resi = $request->resi_number;
+    //         $order->save();
+
+    //         return redirect()->route('admin.order.show', $order->id)->with('success', 'Status pesanan telah diperbarui!');
+    //     }
+
+    //     return back()->with('error', 'Status tidak valid!');
+    // }
+
     public function updateStatus(Request $request, $id)
     {
-        $order = Order::findOrFail($id);
+        $order = Order::with('orderItems.produk')->findOrFail($id);
 
         // Perbarui status pesanan berdasarkan input dari tombol
         if ($request->status == 'berhasil' || $request->status == 'ditolak') {
+            // Jika status berhasil, kurangi stok produk
+            if ($request->status == 'berhasil') {
+                foreach ($order->orderItems as $item) {
+                    $produk = $item->produk;
+
+                    if ($produk) {
+                        // Kurangi stok produk berdasarkan quantity item pesanan
+                        $produk->stock -= $item->quantity;
+                        // Tambahkan quantity ke kolom terjual
+                        $produk->terjual += $item->quantity;
+
+                        // Pastikan stok tidak menjadi negatif
+                        if ($produk->stock < 0) {
+                            $produk->stock = 0;
+                        }
+
+                        $produk->save();
+                    }
+                }
+            }
+
             $order->status = $request->status;
             $order->nomor_resi = $request->resi_number;
             $order->save();

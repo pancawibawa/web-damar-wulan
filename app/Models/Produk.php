@@ -10,7 +10,7 @@ class Produk extends Model
     use HasFactory;
 
     // Kolom yang bisa diisi massal
-    protected $fillable = ['name', 'price', 'description', 'stock','size', 'image'];
+    protected $fillable = ['name', 'price', 'description', 'stock','size', 'image','terjual'];
 
     // Relasi dengan Cart
     public function carts()

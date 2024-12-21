@@ -29,6 +29,7 @@
                                     <tr>
                                         <th>Gambar</th>
                                         <th>Nama Barang</th>
+                                        <th>Jumlah Pesanan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,6 +40,7 @@
                                                     alt="{{ $item->produk->name }}" style="width: 100px; height: auto;">
                                             </td>
                                             <td>{{ $item->produk->name ?? 'N/A' }}</td>
+                                            <td>{{ $item->quantity ?? 'N/A' }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -57,8 +59,37 @@
                         <h5 class="fw-semibold">Detail Pembayaran</h5>
                         <p><strong>Bukti Pembayaran:</strong>
                             @if ($order->payment_proof)
-                                <a href="{{ asset('storage/' . $order->payment_proof) }}" target="_blank">Lihat Bukti
-                                    Pembayaran</a>
+                                <!-- Tombol untuk membuka modal -->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#paymentProofModal">
+                                    Lihat Bukti Pembayaran
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="paymentProofModal" tabindex="-1"
+                                    aria-labelledby="paymentProofModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="paymentProofModalLabel">Bukti Pembayaran</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                <div>
+                                                    <p>Uang yang harus dibayarkan sebesar Rp.{{ number_format($order->total_price, 2) }}</p>
+                                                </div>
+                                                <!-- Menampilkan gambar bukti pembayaran -->
+                                                <img src="{{ asset('storage/' . $order->payment_proof) }}"
+                                                    alt="Bukti Pembayaran" class="img-fluid">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Tutup</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             @else
                                 Tidak ada bukti pembayaran.
                             @endif

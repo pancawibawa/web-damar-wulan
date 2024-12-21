@@ -490,7 +490,7 @@
 
   // Income Chart - Area chart
   // --------------------------------------------------------------------
-  const incomeChartEl = document.querySelector('#incomeChart'),
+  const incomeChartEl = document.querySelector('#incomeChart1'),
     incomeChartConfig = {
       series: [
         {

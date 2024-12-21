@@ -23,6 +23,6 @@ class OrderItem extends Model
     // Relasi dengan Produk
     public function produk()
     {
-        return $this->belongsTo(Produk::class);  // Pastikan model Produk ada dengan nama yang sesuai
+        return $this->belongsTo(Produk::class, 'produk_id');
     }
 }

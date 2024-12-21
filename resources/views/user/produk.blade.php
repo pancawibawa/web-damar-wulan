@@ -29,7 +29,7 @@
                                                 <button type="submit" class="btn btn-dark">Add Cart</button>
                                             </form>
                                             <p style="font-size: 14px; color: #555;">Terjual: <span
-                                                    style="font-weight: bold; color: green;">{{ $item->sold }}</span> pcs
+                                                    style="font-weight: bold; color: green;">{{ $item->terjual }}</span> pcs
                                             </p>
                                         </div>
                                     </div>

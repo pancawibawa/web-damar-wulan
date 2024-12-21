@@ -19,6 +19,7 @@
                                 <th>Size</th>
                                 <th>Harga</th>
                                 <th>Stok</th>
+                                <th>Terjual</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -30,6 +31,7 @@
                                     <td>{{ $item->size }}</td>
                                     <td>{{ number_format($item->price, 2) }}</td>
                                     <td>{{ $item->stock }}</td>
+                                    <td>{{ $item->terjual }}</td>
                                     <td>
                                         <a href="{{ route('admin.produk.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                         <form action="{{ route('admin.produk.destroy', $item->id) }}" method="POST" style="display:inline;">

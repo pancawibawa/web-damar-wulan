@@ -52,14 +52,12 @@
                                 <strong>{{ $order->nomor_resi }}</strong>
                             </td>
                             <td rowspan="{{ $order->orderItems->count() }}">
-
-                                <button type="button" class="btn btn-primary"
-                                    id="pay-button-{{ $order->id }}">Bayar</button>
-
-                                <!-- Link untuk melihat bukti pembayaran jika sudah ada -->
-                                @if ($order->payment_proof)
-                                    <a href="{{ asset('storage/' . $order->payment_proof) }}" target="_blank"
-                                        class="btn btn-link mt-2">Lihat Bukti Transfer</a>
+                                @if (!$order->payment_proof)
+                                    <!-- Tombol Bayar hanya ditampilkan jika bukti pembayaran belum ada -->
+                                    <button type="button" class="btn btn-primary" id="pay-button-{{ $order->id }}">Bayar</button>
+                                @else
+                                    <!-- Link untuk melihat bukti pembayaran jika sudah ada -->
+                                    <a href="{{ asset('storage/' . $order->payment_proof) }}" target="_blank" class="btn btn-link mt-2">Lihat Bukti Transfer</a>
                                 @endif
                             </td>
 
@@ -68,7 +66,7 @@
                                     Swal.fire({
                                         title: 'Unggah Bukti Pembayaran',
                                         html: `
-                                        <p class="text-start">Silahkan transfer ke nomor rekening berikut:</p>
+                                        <p class="text-start">Silahkan transfer <strong>Rp {{ number_format($order->total_price, 0, ',', '.') }}</strong> ke nomor rekening berikut:</p>
                                             <div class="text-start mb-3">
                                                 <strong>Bank: BCA</strong><br>
                                                 <strong>Nomor Rekening: 1234567890</strong><br>
