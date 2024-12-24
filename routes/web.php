@@ -58,9 +58,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 //ROUTE UNTUK USER
 Route::middleware(['auth', 'role:user'])->group(function () {
-    // Route::get('/profile', function () {
-    //     return view('user.profile');
-    // });
+
     Route::get('/home', [UserController::class, 'home'])->name('user.home');
 
     //UNTUK ROUTE PROFILE

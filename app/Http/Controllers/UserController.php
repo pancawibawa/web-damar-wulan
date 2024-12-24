@@ -9,175 +9,110 @@ use App\Models\Produk;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-
+    // Display all products
     public function home()
     {
         $produk = Produk::all();
         return view('user.home', compact('produk'));
     }
+
+    // Display product details
     public function produk()
     {
         $produk = Produk::all();
         return view('user.produk', compact('produk'));
     }
 
+    // Display user's cart
     public function cart()
     {
-        // Ambil user yang sedang login
         $user = auth()->user();
-
-        // Ambil data keranjang berdasarkan user_id
         $carts = Cart::with('produk')->where('user_id', $user->id)->get();
 
-        // Hitung total harga dan grand total
-        $totalPrice = 0;
-        foreach ($carts as $cart) {
-            $totalPrice += $cart->produk->price * $cart->quantity;
-        }
+        $totalPrice = $carts->sum(function ($cart) {
+            return $cart->produk->price * $cart->quantity;
+        });
 
-        // Hitung grand total berdasarkan semua produk di keranjang
-        $grandTotal = $totalPrice;  // Karena sudah dihitung berdasarkan totalPrice untuk saat ini
+        $grandTotal = $totalPrice;
 
-        // Kirim data ke view
         return view('user.cart.index', compact('carts', 'totalPrice', 'grandTotal'));
     }
 
+    // Display order history
     public function history()
     {
-        // Ambil pengguna yang sedang login
         $user = auth()->user();
-
-        // Ambil data pesanan beserta order items berdasarkan user_id
-        $orders = Order::with('orderItems.produk') // Memuat order items beserta produk
+        $orders = Order::with('orderItems.produk')
             ->where('user_id', $user->id)
             ->get();
 
-        // Mengirim data pesanan dan item pesanan ke view
         return view('user.history.index', compact('orders'));
     }
 
-
+    // Display profile page
     public function profile()
     {
         return view('user.profile.index');
     }
 
+    // Display profile edit form
     public function profileEdit()
     {
         return view('user.profile.edit');
     }
 
+    // Update user profile
     public function profileUpdate(Request $request, $id)
     {
         $user = User::findOrFail($id);
 
-        // Validasi data yang masuk
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'phone' => 'nullable|string|max:20',
             'alamat' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:1000', // Foto profil (optional)
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:1000',
         ]);
 
-        // Jika ada foto baru, upload dan simpan path-nya
+        // Handle profile image upload
         if ($request->hasFile('image')) {
-            // Hapus foto lama jika ada
             if ($user->image && Storage::exists('public/profile_images/' . $user->image)) {
                 Storage::delete('public/profile_images/' . $user->image);
             }
 
-            // Simpan foto baru ke folder storage/app/public/profile_images
             $gambar = $request->file('image')->store('public/profile_images');
-            $validatedData['image'] = basename($gambar); // Hanya menyimpan nama file tanpa path lengkap
+            $validatedData['image'] = basename($gambar);
         }
 
-        // Update data pengguna
+        // Update user data
         $user->update($validatedData);
 
         return redirect()->route('user.profile', $user->id)->with('success', 'Profil berhasil diperbarui');
     }
 
-
-
-
-    // public function cekoutView()
-    // {
-    //     // Ambil API Key dari .env
-    //     $apiKey = env('RAJAONGKIR_API_KEY');
-
-    //     // Panggil API RajaOngkir untuk mendapatkan data provinsi
-    //     $response = Http::withHeaders([
-    //         'key' => $apiKey,
-    //     ])->get('https://api.rajaongkir.com/starter/province');
-
-    //     // Periksa apakah respons dari API berhasil
-    //     if ($response->successful()) {
-    //         // Ambil data provinsi dari hasil API
-    //         $provinces = $response->json()['rajaongkir']['results'];
-
-    //         // Ambil data keranjang dari session
-    //         $cartItems = session('cart', []); // Mengambil data cart dari session (misalnya, sebuah array)
-
-    //         // Hitung subtotal, pajak, dan ongkir
-    //         $subtotal = 0;
-    //         foreach ($cartItems as $item) {
-    //             $subtotal += $item['price'] * $item['quantity'];
-    //         }
-
-    //         // Anggap pajak adalah 10% dari subtotal
-    //         $tax = $subtotal * 0.1;
-
-    //         // Ongkir (misalnya, dihitung berdasarkan provinsi atau jarak)
-    //         $shippingCost = 5000; // Ongkir tetap (contoh)
-
-    //         // Total keseluruhan
-    //         $totalAmount = $subtotal + $tax + $shippingCost;
-
-    //         // Kirimkan data ke view
-    //         return view('user.cekout.index', compact('provinces', 'cartItems', 'subtotal', 'tax', 'shippingCost', 'totalAmount'));
-    //     } else {
-    //         // Jika API gagal, bisa menangani dengan menampilkan pesan error atau fallback
-    //         return redirect()->back()->with('error', 'Gagal mengambil data provinsi dari API.');
-    //     }
-    // }
-
-
+    // Display checkout page
     public function cekoutView()
     {
         $user = auth()->user();
-
-        // Ambil data keranjang pengguna yang sedang login
         $carts = Cart::where('user_id', Auth::id())->get();
 
-        // Hitung subtotal dan total
         $subtotal = $carts->sum(function ($cart) {
             return $cart->produk->price * $cart->quantity;
         });
 
-        // Misalkan pajak adalah 10% dari subtotal
-        // $tax = $subtotal * 0.1;
-        // $total = $subtotal + $tax;
-
-        // Inisialisasi ongkir
-        $ongkir = 10000;
-
-        // Menghitung total dengan ongkir
+        $ongkir = 0; // Default ongkir
         $grandTotal = $subtotal + $ongkir;
 
-        // Mengirim data ke view
         return view('user.cekout.index', compact('carts', 'subtotal', 'ongkir', 'grandTotal', 'user'));
     }
 
-
-
+    // Place an order
     public function order(Request $request)
     {
-        // Validasi input form
+        // Validate order data
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
@@ -188,25 +123,61 @@ class UserController extends Controller
             'email' => 'required|email',
         ]);
 
-        // Mendapatkan data keranjang dari pengguna yang login
         $carts = Cart::where('user_id', auth()->id())->get();
 
+        // Ensure the cart is not empty
         if ($carts->isEmpty()) {
             return redirect()->back()->with('error', 'Keranjang Anda kosong!');
         }
 
-        // Menghitung subtotal
         $subtotal = $carts->sum(function ($cart) {
             return $cart->produk->price * $cart->quantity;
         });
 
-        // Menghitung ongkir berdasarkan provinsi
-        $ongkir = ($validated['province'] == 'Jawa Tengah') ? 10000 : 15000;
+        // Determine shipping cost based on the province
+        $ongkir = match ($validated['province']) {
+            'Aceh' => 25000,
+            'Bali' => 20000,
+            'Banten' => 15000,
+            'Bengkulu' => 25000,
+            'DI Yogyakarta' => 15000,
+            'DKI Jakarta' => 15000,
+            'Gorontalo' => 25000,
+            'Jambi' => 25000,
+            'Jawa Barat' => 15000,
+            'Jawa Tengah' => 10000,
+            'Jawa Timur' => 12000,
+            'Kalimantan Barat' => 30000,
+            'Kalimantan Selatan' => 30000,
+            'Kalimantan Tengah' => 30000,
+            'Kalimantan Timur' => 30000,
+            'Kalimantan Utara' => 30000,
+            'Kepulauan Bangka Belitung' => 25000,
+            'Kepulauan Riau' => 25000,
+            'Lampung' => 20000,
+            'Maluku' => 35000,
+            'Maluku Utara' => 35000,
+            'Nusa Tenggara Barat' => 20000,
+            'Nusa Tenggara Timur' => 20000,
+            'Papua' => 40000,
+            'Papua Barat' => 40000,
+            'Riau' => 25000,
+            'Sulawesi Barat' => 30000,
+            'Sulawesi Selatan' => 30000,
+            'Sulawesi Tengah' => 30000,
+            'Sulawesi Tenggara' => 30000,
+            'Sulawesi Utara' => 30000,
+            'Sumatera Barat' => 25000,
+            'Sumatera Selatan' => 25000,
+            'Sumatera Utara' => 25000,
+            'Banten' => 15000,
+            default => 20000,  // For unknown or unlisted provinces
+        };
 
-        // Total keseluruhan
+
         $total = $subtotal + $ongkir;
 
-        // Membuat order baru
+        // Create the order
         $order = Order::create([
             'user_id' => auth()->id(),
             'name' => $validated['name'],
@@ -219,10 +190,10 @@ class UserController extends Controller
             'subtotal' => $subtotal,
             'shipping_cost' => $ongkir,
             'total_price' => $total,
-            'status' => 'pending', // Status awal order
+            'status' => 'pending',
         ]);
 
-        // Menambahkan item dari keranjang ke order
+        // Create order items for each product in the cart
         foreach ($carts as $cart) {
             OrderItem::create([
                 'order_id' => $order->id,
@@ -233,12 +204,10 @@ class UserController extends Controller
             ]);
         }
 
-        // Menghapus keranjang setelah pesanan dibuat
+        // Remove all items from the cart
         $carts->each->delete();
 
-        // Mengalihkan ke halaman konfirmasi dengan pesan sukses
         return redirect()->route('user.history', ['order' => $order->id])
             ->with('success', 'Pesanan Anda telah berhasil dibuat!');
     }
-
 }

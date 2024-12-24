@@ -24,6 +24,11 @@ class CartController extends Controller
             return redirect()->back()->with('error', 'Produk tidak ditemukan.');
         }
 
+        // Cek apakah stok mencukupi
+        if ($produk->stock < 1) {
+            return redirect()->back()->with('error', 'Produk ini sudah habis.');
+        }
+
         // Cek apakah produk sudah ada di keranjang
         $cartItem = Cart::where('user_id', Auth::id())
             ->where('produk_id', $produk_id)
@@ -31,6 +36,10 @@ class CartController extends Controller
 
         if ($cartItem) {
             // Jika produk sudah ada di keranjang, tambahkan jumlahnya
+            if ($cartItem->quantity + 1 > $produk->stock) {
+                return redirect()->back()->with('error', 'Jumlah produk melebihi stok tersedia.');
+            }
+
             $cartItem->quantity += 1;
             $cartItem->save();
         } else {
@@ -55,11 +64,16 @@ class CartController extends Controller
         // Cari cart berdasarkan ID
         $cart = Cart::findOrFail($cartId);
 
-        // Ambil kuantitas baru dari request
-        $newQuantity = $request->input('quantity');
+        // Cek apakah stok mencukupi
+        if ($request->quantity > $cart->produk->stock) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Jumlah produk melebihi stok tersedia.',
+            ], 400);
+        }
 
         // Update kuantitas di cart
-        $cart->quantity = $newQuantity;
+        $cart->quantity = $request->quantity;
         $cart->save();
 
         // Hitung harga untuk item ini
@@ -78,8 +92,6 @@ class CartController extends Controller
         ]);
     }
 
-
-
     public function destroy($id)
     {
         $cart = Cart::find($id);
@@ -92,5 +104,4 @@ class CartController extends Controller
 
         return redirect()->route('user.cart')->with('success', 'Item berhasil dihapus dari keranjang.');
     }
-
 }
