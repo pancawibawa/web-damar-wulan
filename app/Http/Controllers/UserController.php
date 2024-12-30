@@ -17,7 +17,8 @@ class UserController extends Controller
     public function home()
     {
         $produk = Produk::all();
-        return view('user.home', compact('produk'));
+        $produklaris = Produk::orderBy('terjual', 'desc')->get();
+        return view('user.home', compact('produk','produklaris'));
     }
 
     // Display product details

@@ -132,8 +132,7 @@
                                                         <button type="submit" class="btn btn-dark">Add Cart</button>
                                                     </form>
                                                     <p style="font-size: 14px; color: #555;">Terjual: <span
-                                                            style="font-weight: bold; color: green;">{{ $item->sold }}</span>
-                                                        pcs
+                                                            style="font-weight: bold; color: green;">{{ $item->terjual }}</span> pcs
                                                     </p>
                                                 </div>
                                             </div>
@@ -148,65 +147,7 @@
         </div>
         <div class="swiper-pagination position-absolute text-center"></div>
     </section>
-    {{-- <section id="smart-watches" class="product-store padding-large position-relative">
-        <div class="container">
-            <div class="row">
-                <div class="display-header d-flex justify-content-between pb-3">
-                    <h2 class="display-7 text-dark text-uppercase">Produk Promo</h2>
-                    <div class="btn-right">
-                        <a href="{{ route('user.produk') }}" class="btn btn-medium btn-normal text-uppercase">Lihat
-                            Selengkapnya</a>
-                    </div>
-                </div>
-                <div class="swiper product-watch-swiper">
-                    <div class="swiper-wrapper">
-                        @for ($i = 1; $i <= 10; $i++)
-                            <div class="swiper-slide">
-                                <div class="product-card position-relative px-0">
-                                    <div class="container py-0 px-0">
-                                        <div class="card"
-                                            style="width: 100%; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                                            <div class="image-holder"
-                                                style="width: 100%; height: 18rem; overflow: hidden;">
-                                                <img src="asset/images/product-item1.jpg" class="card-img-top"
-                                                    alt="..." style="object-fit: cover; width: 100%; height: 100%;">
-                                            </div>
-                                            <div class="card-body">
-                                                <h5 class="card-title">Songkok NasiUduk</h5>
-                                                <h4>RP 80000</h4>
-                                                <p class="card-text">songkok dengan pribadi yang luwes</p>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <a href="#" class="btn btn-dark">Add Cart</a>
-                                                    <p style="font-size: 14px; color: #555;">Terjual: <span
-                                                            style="font-weight: bold; color: green;">150</span> pcs</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endfor
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="swiper-pagination position-absolute text-center"></div>
-    </section> --}}
-    {{-- <section id="yearly-sale" class="bg-light-blue overflow-hidden mt-5 padding-xlarge"
-        style="background-image: url('asset/images/single-image1.png');background-position: right; background-repeat: no-repeat;">
-        <div class="row d-flex flex-wrap align-items-center">
-            <div class="col-md-6 col-sm-12">
-                <div class="text-content offset-4 padding-medium">
-                    <h3>10% off</h3>
-                    <h2 class="display-2 pb-5 text-uppercase text-dark">New year sale</h2>
-                    <a href="shop.html" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">Shop Sale</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-12">
-
-            </div>
-        </div>
-    </section> --}}
+    
     <section id="latest-blog" class="padding-large">
         <div class="container">
             <div class="row">
@@ -216,54 +157,38 @@
                         <a href="blog.html" class="btn btn-medium btn-normal text-uppercase">Read Blog</a>
                     </div> --}}
                 </div>
-                <div class="post-grid d-flex flex-wrap justify-content-between">
-                    <div class="col-lg-4 col-sm-12">
-                        <div class="card border-none me-3">
-                            <div class="card-image">
-                                <img src="asset/images/post-item1.jpg" alt="" class="img-fluid">
+                <div class="swiper product-swiper">
+                    <div class="swiper-wrapper">
+                        @foreach ($produklaris as $item)
+                            <div class="swiper-slide">
+                                <div class="product-card position-relative px-0">
+                                    <div class="container py-0 px-0">
+                                        <div class="card"
+                                            style="width: 100%; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                            <div class="image-holder" style="width: 100%; height: 18rem; overflow: hidden;">
+                                                <img src="{{ asset('storage/produk/' . $item->image) }}"
+                                                    class="card-img-top" alt="..."
+                                                    style="object-fit: cover; width: 100%; height: 100%;">
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ $item->name }}</h5>
+                                                <h4>RP {{ number_format($item->price, 2) }}</h4>
+                                                <p class="card-text">{{ $item->description }}</p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <form action="{{ route('user.cart.add', $item->id) }}" method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-dark">Add Cart</button>
+                                                    </form>
+                                                    <p style="font-size: 14px; color: #555;">Terjual: <span
+                                                            style="font-weight: bold; color: green;">{{ $item->terjual }}</span> pcs
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-body text-uppercase">
-                            <div class="card-meta text-muted">
-                                <span class="meta-date">feb 22, 2023</span>
-                                <span class="meta-category">- Gadgets</span>
-                            </div>
-                            <h3 class="card-title">
-                                <a href="#">Get some cool gadgets in 2023</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-12">
-                        <div class="card border-none me-3">
-                            <div class="card-image">
-                                <img src="asset/images/post-item2.jpg" alt="" class="img-fluid">
-                            </div>
-                        </div>
-                        <div class="card-body text-uppercase">
-                            <div class="card-meta text-muted">
-                                <span class="meta-date">feb 25, 2023</span>
-                                <span class="meta-category">- Technology</span>
-                            </div>
-                            <h3 class="card-title">
-                                <a href="#">Technology Hack You Won't Get</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-12">
-                        <div class="card border-none me-3">
-                            <div class="card-image">
-                                <img src="asset/images/post-item3.jpg" alt="" class="img-fluid">
-                            </div>
-                        </div>
-                        <div class="card-body text-uppercase">
-                            <div class="card-meta text-muted">
-                                <span class="meta-date">feb 22, 2023</span>
-                                <span class="meta-category">- Camera</span>
-                            </div>
-                            <h3 class="card-title">
-                                <a href="#">Top 10 Small Camera In The World</a>
-                            </h3>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

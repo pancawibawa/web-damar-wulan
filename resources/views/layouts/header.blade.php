@@ -30,7 +30,7 @@
                         <a class="nav-link me-4" href="#mobile-products">Produk</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link me-4" href="#smart-watches">Promo</a>
+                        <a class="nav-link me-4" href="#latest-blog">Terlaris</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link me-4" href="/login">Login</a>
@@ -47,7 +47,7 @@
                         <a class="nav-link me-4" href="{{ route('user.produk') }}">Produk</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link me-4" href="/#smart-watches">Promo</a>
+                        <a class="nav-link me-4" href="/#latest-blog">Terlaris</a>
                     </li>
                     {{-- Dropdown untuk user yang sudah login --}}
                     <li class="nav-item dropdown">
