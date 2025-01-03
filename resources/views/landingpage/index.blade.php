@@ -8,14 +8,13 @@
                         <div class="row d-flex align-items-center">
                             <div class="col-md-6">
                                 <div class="banner-content">
-                                    <h1 class="display-2 text-uppercase text-dark pb-5">Your Products Are Great.</h1>
-                                    <a href="shop.html" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">Shop
-                                        Product</a>
+                                    <h1 class="display-2 text-uppercase text-dark pb-5">Solusi Belanja Peci Modern</h1>
+                                    <a href="shop.html" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">Belanja Sekarang</a>
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="image-holder">
-                                    <img src="asset/images/banner-image.png" alt="banner">
+                                    <img src="asset/images/banner-image-peci.png" alt="banner">
                                 </div>
                             </div>
                         </div>
@@ -265,8 +264,8 @@
                 </div>
                 <div class="d-flex flex-wrap">
                     <figure class="instagram-item pe-2">
-                        <a href="https://templatesjungle.com/" class="image-link position-relative">
-                            <img src="asset/images/insta-item1.jpg" alt="instagram" class="insta-image">
+                        <a href="" class="image-link position-relative">
+                            <img src="asset/images/peci1.jpg" alt="instagram" class="insta-image">
                             <div class="icon-overlay position-absolute d-flex justify-content-center">
                                 <svg class="instagram">
                                     <use xlink:href="#instagram"></use>
@@ -275,8 +274,8 @@
                         </a>
                     </figure>
                     <figure class="instagram-item pe-2">
-                        <a href="https://templatesjungle.com/" class="image-link position-relative">
-                            <img src="asset/images/insta-item2.jpg" alt="instagram" class="insta-image">
+                        <a href="" class="image-link position-relative">
+                            <img src="asset/images/peci2.jpg" alt="instagram" class="insta-image">
                             <div class="icon-overlay position-absolute d-flex justify-content-center">
                                 <svg class="instagram">
                                     <use xlink:href="#instagram"></use>
@@ -285,8 +284,8 @@
                         </a>
                     </figure>
                     <figure class="instagram-item pe-2">
-                        <a href="https://templatesjungle.com/" class="image-link position-relative">
-                            <img src="asset/images/insta-item3.jpg" alt="instagram" class="insta-image">
+                        <a href="" class="image-link position-relative">
+                            <img src="asset/images/peci3.jpg" alt="instagram" class="insta-image">
                             <div class="icon-overlay position-absolute d-flex justify-content-center">
                                 <svg class="instagram">
                                     <use xlink:href="#instagram"></use>
@@ -295,8 +294,8 @@
                         </a>
                     </figure>
                     <figure class="instagram-item pe-2">
-                        <a href="https://templatesjungle.com/" class="image-link position-relative">
-                            <img src="asset/images/insta-item4.jpg" alt="instagram" class="insta-image">
+                        <a href="" class="image-link position-relative">
+                            <img src="asset/images/peci4.jpg" alt="instagram" class="insta-image">
                             <div class="icon-overlay position-absolute d-flex justify-content-center">
                                 <svg class="instagram">
                                     <use xlink:href="#instagram"></use>
@@ -305,8 +304,8 @@
                         </a>
                     </figure>
                     <figure class="instagram-item pe-2">
-                        <a href="https://templatesjungle.com/" class="image-link position-relative">
-                            <img src="asset/images/insta-item5.jpg" alt="instagram" class="insta-image">
+                        <a href="" class="image-link position-relative">
+                            <img src="asset/images/peci5.jpg" alt="instagram" class="insta-image">
                             <div class="icon-overlay position-absolute d-flex justify-content-center">
                                 <svg class="instagram">
                                     <use xlink:href="#instagram"></use>
